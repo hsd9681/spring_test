@@ -5,21 +5,17 @@ import org.sparta.spring_project.dto.MemoResponseDto;
 import org.sparta.spring_project.entitiy.Memo;
 import org.sparta.spring_project.repository.Memorepository;
 import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
-import org.springframework.jdbc.support.GeneratedKeyHolder;
-import org.springframework.jdbc.support.KeyHolder;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.List;
 
 public class MemoService {
-    private final JdbcTemplate jdbcTemplate;
+
+    private final Memorepository memoRepository;
+
+
 
     public MemoService(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
+        this.memoRepository = new Memorepository(jdbcTemplate);
     }
 
 
@@ -28,7 +24,7 @@ public class MemoService {
         Memo memo = new Memo(requestDto);
 
         // DB 저장
-        Memorepository memoRepository = new Memorepository(jdbcTemplate);
+
         Memo saveMemo =  memoRepository.save(memo);
         // Entity -> ResponseDto
         MemoResponseDto memoResponseDto = new MemoResponseDto(memo);
@@ -39,7 +35,7 @@ public class MemoService {
     public List<MemoResponseDto> getMemos() {
 
         //db 조회
-        Memorepository memoRepository = new Memorepository(jdbcTemplate);
+
         return memoRepository.findAll();
 
         // DB 조회
@@ -47,7 +43,7 @@ public class MemoService {
     }
 
     public Long updateMemo(Long id,MemoRequestDto requestDto) {
-        Memorepository memoRepository = new Memorepository(jdbcTemplate);
+
 
 
         // 해당 메모가 DB에 존재하는지 확인
@@ -63,7 +59,6 @@ public class MemoService {
 
 
     public Long deleteService(Long id) {
-        Memorepository memoRepository = new Memorepository(jdbcTemplate);
 
         // 해당 메모가 DB에 존재하는지 확인
         Memo memo = memoRepository.findById(id);
