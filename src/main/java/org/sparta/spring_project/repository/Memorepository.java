@@ -1,5 +1,7 @@
 package org.sparta.spring_project.repository;
 
+import jakarta.persistence.EntityManager;
+import jakarta.transaction.Transactional;
 import org.sparta.spring_project.dto.MemoRequestDto;
 import org.sparta.spring_project.dto.MemoResponseDto;
 import org.sparta.spring_project.entitiy.Memo;
@@ -87,4 +89,15 @@ public class Memorepository {
             }
         }, id);
     }
+
+    @Transactional
+    public Memo createMemo(EntityManager em) {
+        Memo memo = em.find(Memo.class, 1);
+        memo.setUsername("Robbrt");
+        memo.setContents("@Transactional 전파 테스트 중!");
+
+        System.out.println("createMemo 메서드 종료");
+        return memo;
+    }
+
 }
