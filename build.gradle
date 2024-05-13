@@ -23,11 +23,11 @@ repositories {
 
 dependencies {
 	// MySQL
-	implementation 'org.springframework.boot:spring-boot-starter'
-	runtimeOnly 'com.mysql:mysql-connector-j'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	//implementation 'org.springframework.boot:spring-boot-starter'
+	//runtimeOnly 'com.mysql:mysql-connector-j'
+	//testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-	implementation 'mysql:mysql-connector-java:8.0.28'
+	implementation 'mysql:mysql-connector-java:8.0.33'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'

@@ -4,18 +4,23 @@ import org.sparta.spring_project.dto.MemoRequestDto;
 import org.sparta.spring_project.dto.MemoResponseDto;
 import org.sparta.spring_project.entitiy.Memo;
 import org.sparta.spring_project.repository.Memorepository;
-import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MemoService {
 
     private final Memorepository memoRepository;
 
+//생성자가 1개 이면 오토와이어 생략가능
+    public MemoService(Memorepository memoRepository) {
+        //1. bean 이름으로 가져오기
+        //Memorepository memoRepository = (Memorepository) context.getBean("memorepository");
 
-
-    public MemoService(JdbcTemplate jdbcTemplate) {
-        this.memoRepository = new Memorepository(jdbcTemplate);
+        //2. bean 클래스 형식으로 가져오기
+        //Memorepository memoRepository = context.getBean(Memorepository.class);
+        this.memoRepository = memoRepository;
     }
 
 
