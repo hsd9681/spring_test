@@ -47,7 +47,7 @@ public class MemoService {
 //        // DB 조회
 
         //Memo레포를 인터페이스로 변환
-        return memoRepository.findAll().stream().map(MemoResponseDto::new).toList();
+        return memoRepository.findAllByOrderByModifiedAtDesc().stream().map(MemoResponseDto::new).toList();
 
     }
     @Transactional
